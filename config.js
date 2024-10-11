@@ -54,3 +54,36 @@ class Database {
 
 
 module.exports = new Database();
+
+class Person {
+  constructor(id, name, email, role){
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.role = role;
+      
+    }
+}
+  class Student extends Person {
+      getRole() {
+        super.getRole() {
+          console.log (`Es un ${this.role}`;)
+      }
+    }
+
+    class Professor extends Person {
+      getRole() {
+        super.getRole() {
+          console.log (`Es un ${this.role}`;)
+      }
+    }
+
+    class Admin extends Person {
+      getRole() {
+        super.getRole() {
+          console.log (`Es un ${this.role}`);
+      }
+    }
+  }
+}
+ }

@@ -34,6 +34,7 @@ function getStudentInfo() {
   	document.getElementById("person-info").classList.add("student-info")
     document.getElementById("person-name").textContent = data.name;
     document.getElementById("person-score").textContent = data.score;
+    document.getElementById("person-role").textContent = data.role;
   }
 
   getPersonInfo(callback);
