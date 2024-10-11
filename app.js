@@ -1,7 +1,7 @@
 // app.js
 const express = require("express");
 const path = require("path");
-const connection = require("./config");
+const database = require("./config");
 const app = express();
 const PORT = process.env.APP_PORT;
 
@@ -11,19 +11,13 @@ app.use(express.static(path.join(__dirname, "public")));
 // Endpoint para buscar estudiantes
 app.get("/person/:id", (req, res) => {
   const personId = req.params.id;
-  const query = "SELECT * FROM persons WHERE id = ?";
 
-  connection.query(query, [personId], (err, results) => {
+  database.getStudentById(personId, (err, student) => {
     if (err) {
-      res.status(500).json({ error: "Error fetching person data" });
+      res.status(err.message === "Student not found" ? 404 : 500).json({ error: err.message });
       return;
     }
-    if (results.length === 0) {
-      res.status(404).json({ error: "Person not found" });
-      return;
-    }
-    const person = results[0];
-    res.json({ name: person.name, score: person.score });
+    res.json(student);
   });
 });
 
